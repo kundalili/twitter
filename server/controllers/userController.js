@@ -1,4 +1,5 @@
 const User = require('../models/User')
+const Message = require('../models/Message')
 
 module.exports.list = async (req, res) => {
 
@@ -53,6 +54,24 @@ module.exports.findById = async (req, res) => {
         res.send({success: true, user})
     } catch (error) {
         console.log("🚀 ~ Error while finding User", error.message)
+
+        res.send({success: false, error: error.message})
+    }
+}
+
+module.exports.findMessagesFromUser = async (req, res) => {
+    try {
+        console.log(req.params)
+        if (!req.params.userId) {
+            throw new Error("No User found for this id")
+        }
+        const messageCollection = await Message.find(req.params)
+        if (!messageCollection) {
+            throw new Error("No messages found to this user")
+        }
+        res.send({success: true, messageCollection})
+    } catch (error) {
+        console.log("🚀 ~ Error while finding Messages to User", error.message)
 
         res.send({success: false, error: error.message})
     }
