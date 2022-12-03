@@ -5,10 +5,10 @@ module.exports.list = async (req, res) => {
     try {
         console.log("🚀 ~ list here: ")
 
-        const users = await Message.find()
+        const messages = await Message.find()
         console.log("🚀 ~ users", users)
        
-        res.send({success: true, users})
+        res.send({success: true, messages})
     } catch (error) {
         
         console.log("🚀 ~ Error in list users", error.message)
