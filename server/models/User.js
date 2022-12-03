@@ -16,7 +16,11 @@ const userSchema = new Schema({
     firstName: String,
     lastName: String,
     bio: String,
-}) 
+    city: String,
+    country: String,
+    birthday: Date,
+},
+{ timestamps: true}) 
 
 // in db the collection should be 'users'
 module.exports = mongoose.model('User', userSchema)
