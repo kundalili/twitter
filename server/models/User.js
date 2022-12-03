@@ -13,6 +13,9 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
+    firstName: String,
+    lastName: String,
+    bio: String,
 }) 
 
 // in db the collection should be 'users'
