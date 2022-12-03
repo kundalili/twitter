@@ -42,3 +42,18 @@ module.exports.create = async (req, res) => {
         
     }
 }
+
+module.exports.findById = async (req, res) => {
+    try {
+        console.log("req params", req.params)
+        if (!req.params.messageId) {
+            throw new Error("No Message found for this id")
+        }
+        const message = await Message.findById(req.params.messageId)
+        res.send({success: true, message})
+    } catch (error) {
+        console.log("🚀 ~ Error while finding Message", error.message)
+
+        res.send({success: false, error: error.message})
+    }
+}
