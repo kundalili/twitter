@@ -42,3 +42,18 @@ module.exports.register = async (req, res) => {
         
     }
 }
+
+module.exports.findById = async (req, res) => {
+    try {
+        console.log("req params", req.params)
+        if (!req.params.userId) {
+            throw new Error("No User found for this id")
+        }
+        const user = await User.findById(req.params.userId)
+        res.send({success: true, user})
+    } catch (error) {
+        console.log("🚀 ~ Error while finding User", error.message)
+
+        res.send({success: false, error: error.message})
+    }
+}
