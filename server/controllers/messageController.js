@@ -6,7 +6,6 @@ module.exports.list = async (req, res) => {
         console.log("🚀 ~ list here: ")
 
         const messages = await Message.find()
-        console.log("🚀 ~ users", users)
        
         res.send({success: true, messages})
     } catch (error) {
